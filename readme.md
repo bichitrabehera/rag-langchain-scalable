@@ -1,8 +1,8 @@
 # RAG Application
 
 This folder contains a Retrieval-Augmented Generation (RAG) application. It
-retrieves relevant document chunks from a vector database and sends them to a
-Google Gemini model to generate an answer.
+retrieves relevant document chunks from a vector database and sends them to an
+OpenAI model to generate an answer.
 
 ## Technologies used
 
@@ -15,9 +15,9 @@ Google Gemini model to generate an answer.
 - **Qdrant** - Vector database used to store and search document embeddings.
 - **LangChain** - Connects the embedding model, vector store, chat model, and
   agent.
-- **Google Generative AI**:
-  - `gemini-embedding-001` creates embeddings for search.
-  - `gemini-3.8-flash` generates the final answer.
+- **OpenAI**:
+  - `text-embedding-3-small` creates embeddings for search.
+  - `gpt-4o-mini` generates the final answer.
 - **python-dotenv** - Loads environment variables from `.env`.
 - **Docker Compose** - Starts Qdrant and Valkey locally.
 
@@ -43,7 +43,7 @@ rag/
    collection.
 5. The retrieved document contents are joined into a context string.
 6. The context and question are passed to the LangChain agent.
-7. Gemini generates the answer.
+7. OpenAI generates the answer.
 8. The client polls `GET /job_status` with the returned job ID.
 
 ## Running the application
@@ -64,12 +64,12 @@ This starts:
 The Qdrant `learning` collection must already exist and contain indexed
 documents.
 
-### 2. Configure Google AI
+### 2. Configure OpenAI
 
 Create a `.env` file in the project or `rag` directory:
 
 ```env
-GOOGLE_API_KEY=your_google_api_key
+OPENAI_API_KEY=your_openai_api_key
 ```
 
 Never commit the real API key to source control. If a key is exposed, revoke it
